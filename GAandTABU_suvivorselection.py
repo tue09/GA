@@ -286,23 +286,8 @@ def Genetic_Algorithm(current_population, tournament_size, crossover_rate, mutat
         new_population = []
         for j in range(int(len(current_population)/2)):
             #Crossover:
-            """parent1_tournament, parent2_tournament = tournament_selection(current_population, tournament_size)
-            parent1_roulette, parent2_roulette = roulette_wheel_selection(current_population), roulette_wheel_selection(current_population)
-            array1 = [parent1_tournament, parent1_roulette]
-            array2 = [parent2_tournament, parent2_roulette]
-            array1 = sorted(array1, key = lambda x: x[0])
-            parent1 = array1[0]
-            parent2 = array2[0]"""
             if i <= number_iteration/2: parent1, parent2 = tournament_selection(current_population, tournament_size)
             else: parent1, parent2 = roulette_wheel_selection(current_population), roulette_wheel_selection(current_population)
-            """if parent1 in current_population:
-                parent1 = array1[1]
-                if parent1 in current_population:
-                    parent1 = array1[0]
-            if parent2 in current_population:
-                parent2 = array2[1]
-                if parent2 in current_population:
-                    parent2 = array2[0]"""
             child1, child2 = crossover(new_population, parent1, parent2, crossover_rate)
             #Mutation:
             child1, child2 = mutation(new_population, child1, mutation_rate), mutation(new_population, child2, mutation_rate)
@@ -330,38 +315,3 @@ def Genetic_Algorithm(current_population, tournament_size, crossover_rate, mutat
 read_data(file_path)
 solution = Genetic_Algorithm(initial_population(min(50, number_of_cities)), 4, 0.95, 1/number_of_cities, 10)
 
-"""read_data("att48.tsp")
-array = []
-GAP_array = []
-for i in range(10):
-    print(i)
-    solution = Genetic_Algorithm(initial_population(min(50, number_of_cities)), 4, 0.95, 1/number_of_cities, 100)
-    GAP = ((solution[0] - 1211) / 1211) * 100
-    array.append(solution)
-    GAP_array.append(GAP)
-best = min(array, key = lambda x: x[0])
-worst = max(array, key = lambda x: x[0])
-sum = 0
-for i in range(10):
-    sum = sum + array[i][0]
-average = sum/10
-
-best_GAP = min(GAP_array)
-worst_GAP = max(GAP_array)
-sum_GAP = 0
-for i in range(10):
-    sum_GAP = sum_GAP + GAP_array[i]
-average_GAP = sum_GAP/10"""
-
-
-"""array = []
-for i in range(10):
-    print(i)
-    solution = Genetic_Algorithm(initial_population(min(50, number_of_cities)), 3, 0.95, 1/number_of_cities, 500)
-    array.append(solution)
-best = min(array, key = lambda x: x[0])
-worst = max(array, key = lambda x: x[0])
-sum = 0
-for i in range(10):
-    sum = sum + array[i][0]
-average = sum/10"""
